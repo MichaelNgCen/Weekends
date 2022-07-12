@@ -13,14 +13,16 @@ function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
     return choices[randomNumber];
 }
-// function game(userChoice){
-//     console.log("Game function called");
-// }
-
-function win () {
+function upcase(str) {
+    if (str == "fire") return "Fire";
+    if (str == "water") return "Water";
+    if (str == "grass") return "Grass";
+}
+function win (user, computer) {
     userScore ++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
+    result_div.innerHTML = `${upcase(user)} beats ${upcase(computer)}. You win!`;
 }
 
 function lose(){
@@ -40,17 +42,17 @@ function game(userChoice) {
         case "firefire":
         case "waterwater":
         case "grassgrass":
-            draw();
+            draw(userChoice, computerChoice);
             break;
         case "grassfire":
         case "firewater":
         case "watergrass":
-            lose();
+            lose(userChoice, computerChoice);
             break;
         case "firegrass":
         case "grasswater":
         case "waterfire":
-            win();
+            win(userChoice, computerChoice);
             break;
     }
 }
